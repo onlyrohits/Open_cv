@@ -9,6 +9,8 @@ import cv2
 from contour import extract_cheeck_parts
 #from crop import crop_forehead
 
+#crop image using mask
+#https://www.life2coding.com/cropping-polygon-or-non-rectangular-region-from-image-using-opencv-python/
 
 
 
@@ -72,7 +74,7 @@ total_points.extend(right_points)
 
 total_points.extend(left_points)
 
-#print(total_points)
+print(total_points)
 extract_cheeck_parts(gray,total_points)
 
 

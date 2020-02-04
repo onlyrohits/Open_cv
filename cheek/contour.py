@@ -12,7 +12,7 @@ def extract_cheeck_parts(img,points):
         
     cv2.fillPoly(img,points, 255)
     
-    plt.imshow(img)
+    plt.imshow(img,cmap='gray')
     plt.show()
 
 
