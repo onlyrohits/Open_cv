@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import dlib
 import cv2
 
-from contour import extract_cheeck_parts
+#from contour import extract_cheeck_parts
 #from crop import crop_forehead
 
 
@@ -51,10 +51,8 @@ for (i, rect) in enumerate(rects):
 		landmark[i][0] = shape_.part(i).x
 		landmark[i][1] = shape_.part(i).y
 
-		if i==42:
+		if i==46:
 			print((landmark[i][0],landmark[i][1]))
-
-
 
 
 

@@ -16,9 +16,11 @@ image = imutils.resize(image, width=500)
 # Window name in which image is displayed 
 window_name = 'Image'
 
-center_coordinates = (318, 132) 
+center_coordinates = (140, 112) #landmark 37
 
-axesLength = (100, 50) 
+ 
+
+axesLength = (70, 90) 
 
 angle = 0
 
