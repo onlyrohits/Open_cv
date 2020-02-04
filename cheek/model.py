@@ -69,11 +69,8 @@ for (i, rect) in enumerate(rects):
 
 
 left_points.append(right_points[-1]) #appned last 28 landmark in left points
-
 total_points.extend(right_points)
-
 total_points.extend(left_points)
-
 print(total_points)
 extract_cheeck_parts(gray,total_points)
 

@@ -32,14 +32,14 @@ cv2.bitwise_not(wbg,wbg, mask=mask)
 # overlap the resulted cropped image on the white background
 dst = wbg+res
  
-plt.imshow(img,cmap='gray')
-plt.show()
-plt.imshow(mask,cmap='gray')
-plt.show()
-plt.imshow(cropped,cmap='gray')
+#plt.imshow(img,cmap='gray')
+#plt.show()
+#plt.imshow(mask,cmap='gray')
+#plt.show()
+#plt.imshow(cropped,cmap='gray')
 
-plt.show()
-plt.imshow(res,cmap='gray')
-plt.show()
+#plt.show()
+#plt.imshow(res,cmap='gray')
+#plt.show()
 plt.imshow(dst,cmap='gray')
 plt.show()
