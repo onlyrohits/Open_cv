@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import dlib
 import cv2
 
-#from contour import extract_cheeck_parts
+from contour import dark_circle
 #from crop import crop_forehead
 
 
@@ -51,8 +51,9 @@ for (i, rect) in enumerate(rects):
 		landmark[i][0] = shape_.part(i).x
 		landmark[i][1] = shape_.part(i).y
 
-		if i==46:
-			print((landmark[i][0],landmark[i][1]))
+		if i==41 or i==46:
+			print('i=',i,(landmark[i][0],landmark[i][1]))
+			dark_circle(gray,(landmark[i][0],landmark[i][1]))
 
 
 
