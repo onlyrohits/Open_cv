@@ -37,14 +37,7 @@ rects = detector(gray, 0)
 
 # loop over the face detections
 
-left_points=[]
-right_points=[]
 
-total_points=[]
-
-
-right_cheek=[0,1,2,3,4,28]
-left_cheek=[12,13,14,15,16,28]
 
  #eyes cordinates that we will pickup points
 
@@ -58,21 +51,10 @@ for (i, rect) in enumerate(rects):
 		landmark[i][0] = shape_.part(i).x
 		landmark[i][1] = shape_.part(i).y
 
-		if i in right_cheek:
-			right_points.append([landmark[i][0],landmark[i][1]])
-		elif i in left_cheek:
-			left_points.append([landmark[i][0],landmark[i][1]])
+		if i==42:
+			print((landmark[i][0],landmark[i][1]))
 
 
 
-
-left_points.append(right_points[-1]) #appned last 28 landmark in left points
-
-total_points.extend(right_points)
-
-total_points.extend(left_points)
-
-#print(total_points)
-extract_cheeck_parts(gray,total_points)
 
 
