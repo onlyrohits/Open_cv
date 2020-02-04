@@ -14,7 +14,7 @@ def dark_circle(img,cordinate):
     image=img
     center_coordinates = cordinate
     
-    axesLength = (60, 50) #(x,y)
+    axesLength = (60, 40) #(x,y)
     
     angle = 0
     
