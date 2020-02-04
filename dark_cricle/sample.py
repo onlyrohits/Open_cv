@@ -1,35 +1,56 @@
+# Python program to explain cv2.ellipse() method 
+	
+# importing cv2 
+import imutils
+import cv2 
+import matplotlib.pyplot as plt
 import numpy as np
-import cv2
-from matplotlib import pyplot as plt
-import pandas as pd
-import json
+
+
+image = cv2.imread('img7.jpg')
+
+image = imutils.resize(image, width=500)
+
+image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
 
-for i in range(0,2):
-    df=pd.read_csv('data.csv')
-    df=df.iloc[i,:]  
-    
-    cordinate=json.loads(df[5])
-    
-    
-    x=[[cordinate['all_points_x'][i],cordinate['all_points_y'][i]] for i in range(0,len(cordinate['all_points_x']))]
-    
-    x=np.array(x)
-    
-    print(x)
-    x=x.reshape(1,len(x),2)
-    
-    
-    
-    img = cv2.imread('facial_landmarks.jpg')
-    
-    
-    
-    cv2.fillPoly( img,x, 255 )
-    
-    plt.imshow(img)
-    plt.show()
+
+image_copy=np.copy(image)
+
+mask = np.zeros(image.shape[0:2], dtype=np.uint8)
+
+
+center_coordinates = (173, 415)
+
+
+axesLength = (60, 40) #(x,y)
+
+angle = 0
+
+startAngle = 10
+
+endAngle = 170
+
+# Red color in BGR 
+color = (255, 255, 255) 
+
+# Line thickness of 5 px 
+thickness = -1
+
+# Using cv2.ellipse() method 
+# Draw a ellipse with red line borders of thickness of 5 px 
+image_mask = cv2.ellipse(mask, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness) 
+
+# Displaying the image 
+plt.imshow(image_mask,cmap='gray')
+plt.show() 
+
+
+image_copy[image_mask==0]=0
+
+plt.imshow(image,cmap='gray')
+plt.show() 
 
 
 

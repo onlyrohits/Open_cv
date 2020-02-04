@@ -5,33 +5,47 @@
 import imutils
 import cv2 
 import matplotlib.pyplot as plt
-	
+import numpy as np
 
 
 
 def dark_circle(img,cordinate):
 
     image=img
+
+
+
+    image_copy=np.copy(image)
+
+    mask = np.zeros(image.shape[0:2], dtype=np.uint8)
+
+
     center_coordinates = cordinate
-    
+
     axesLength = (60, 40) #(x,y)
-    
+
     angle = 0
-    
+
     startAngle = 10
-    
+
     endAngle = 170
-    
+
     # Red color in BGR 
-    color = (0, 0, 255) 
-    
+    color = (255, 255, 255) 
+
     # Line thickness of 5 px 
     thickness = -1
-    
+
     # Using cv2.ellipse() method 
     # Draw a ellipse with red line borders of thickness of 5 px 
-    image = cv2.ellipse(image, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness) 
-    
+    image_mask = cv2.ellipse(mask, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness) 
+
     # Displaying the image 
-    plt.imshow(image)
+    #plt.imshow(image_mask,cmap='gray')
+    #plt.show() 
+
+
+    image_copy[image_mask==0]=0
+
+    plt.imshow(image_copy,cmap='gray')
     plt.show() 
