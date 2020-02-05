@@ -22,7 +22,7 @@ def dark_circle(img,cordinate):
 
     center_coordinates = cordinate
 
-    axesLength = (60, 40) #(x,y)
+    axesLength = (60, 60) #(x,y)
 
     angle = 0
 
@@ -41,8 +41,13 @@ def dark_circle(img,cordinate):
     image_mask = cv2.ellipse(mask, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness) 
 
     # Displaying the image 
-    #plt.imshow(image_mask,cmap='gray')
-    #plt.show() 
+
+    plt.imshow(image,cmap='gray')
+    plt.show() 
+
+
+    plt.imshow(image_mask,cmap='gray')
+    plt.show() 
 
 
     image_copy[image_mask==0]=0

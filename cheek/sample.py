@@ -6,15 +6,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 
  
- 
- 
-img = cv2.imread("img2.jpg")
+img = cv2.imread("img3.jpg")
 img = imutils.resize(img, width=500)
 
 img= cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 mask = np.zeros(img.shape[0:2], dtype=np.uint8)
-points = np.array([[[28, 121], [33, 185], [40, 246], [52, 306], [74, 365], [252, 163], [446, 370], [467, 312], [478, 252], [486, 193], [491, 131], [252, 163]]])
+points = np.array([[[84, 450], [83, 497], [88, 543], [95, 589], [111, 635], [253, 494], [394, 639], [408, 595], [415, 547], [423, 498], [423, 449], [253, 494]]])
  
 #method 1 smooth region
 cv2.drawContours(mask, [points], -1, (255, 255, 255), -1, cv2.LINE_AA)
