@@ -42,7 +42,7 @@ def crop_forehead(img_array,cordinates):
 	forehead = img[y1_new+20:height-20,x1_new:width+50] #crop images
 
 	#plt.imshow(forehead)
-	#cv2.imwrite('forehead.jpg',forehead)
+	cv2.imwrite('forehead.jpg',forehead)
 
 	per=frangi_filter(forehead) #pass image to frangi filter and get percentage
 	#return [(x1_new,y1_new),(width,height)],per
@@ -76,7 +76,7 @@ def extract_cheeck_parts(img,points):
 	dst = wbg+res
 
 	per=frangi_filter(dst)
-	#cv2.imwrite('cheek.jpg',dst)
+	cv2.imwrite('cheek.jpg',dst)
 
 	#plt.imshow(dst,cmap='gray')
 	#plt.show()

@@ -1,0 +1,5 @@
+#first crop faces using landmark
+#check avg pixels values using np.mean
+
+#and compare dark circle avg pixels
+#if they are same then that are no dark circle otherwise yes
