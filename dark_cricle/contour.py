@@ -42,15 +42,29 @@ def dark_circle(img,cordinate):
 
     # Displaying the image 
 
-    plt.imshow(image,cmap='gray')
-    plt.show() 
+    #plt.imshow(image,cmap='gray')
+    #plt.show() 
 
 
-    plt.imshow(image_mask,cmap='gray')
-    plt.show() 
+    #plt.imshow(image_mask,cmap='gray')
+    #plt.show() 
 
 
     image_copy[image_mask==0]=0
 
+
+    cv2.imwrite('eye.jpg',image_copy)
+
+    avg_pixels(image_copy,image_mask)
+
+
     plt.imshow(image_copy,cmap='gray')
     plt.show() 
+
+
+def avg_pixels(image_copy,image_mask):
+	
+	print(np.sum(image_copy))
+	print(np.sum(image_mask))
+
+	print(np.sum(image_copy)/np.sum(image_mask))

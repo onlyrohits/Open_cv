@@ -1,56 +1,43 @@
-# Python program to explain cv2.ellipse() method 
-	
-# importing cv2 
-import imutils
 import cv2 
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 import numpy as np
+import imutils
+
+import utils
+
+face = cv2.imread('face.jpg')
+ 
+face=np.where(face<255,face,0)
+
+B, G, R = cv2.split(face) 
+# Corresponding channels are seperated 
 
 
-image = cv2.imread('img7.jpg')
 
-image = imutils.resize(image, width=500)
+eye = cv2.imread('eye.jpg')
+ 
+eye=np.where(eye<255,eye,0)
 
-image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-
-
-
-image_copy=np.copy(image)
-
-mask = np.zeros(image.shape[0:2], dtype=np.uint8)
+B1, G, R = cv2.split(eye) 
+# Corresponding channels are seperated 
 
 
-center_coordinates = (173, 415)
 
 
-axesLength = (60, 40) #(x,y)
 
-angle = 0
-
-startAngle = 10
-
-endAngle = 170
-
-# Red color in BGR 
-color = (255, 255, 255) 
-
-# Line thickness of 5 px 
-thickness = -1
-
-# Using cv2.ellipse() method 
-# Draw a ellipse with red line borders of thickness of 5 px 
-image_mask = cv2.ellipse(mask, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness) 
-
-# Displaying the image 
-plt.imshow(image_mask,cmap='gray')
-plt.show() 
+print(np.average(B1)+np.average(B))
 
 
-image_copy[image_mask==0]=0
 
-plt.imshow(image,cmap='gray')
-plt.show() 
+
+
+
+
+
+
+
+
+
 
 
 
