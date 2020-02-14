@@ -6,13 +6,8 @@ import matplotlib.pyplot as plt
 import dlib
 import cv2
 
-from contour import dark_circle
+from crop import crop_forehead,extract_cheeck_parts
 
-from crop_face import extract_cheeck_parts
-#from crop import crop_forehead
-
-#crop image using mask
-#https://www.life2coding.com/cropping-polygon-or-non-rectangular-region-from-image-using-opencv-python/
 
 
 
@@ -28,6 +23,7 @@ img_name='img{}.jpg'.format(img_digit)
 image = cv2.imread(img_name)
 
 image = imutils.resize(image, width=500)
+
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 out_face = np.zeros_like(image)
@@ -37,17 +33,23 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
 # detect faces in the grayscale image
-rects = detector(gray, 0)
+rects = detector(gray, 1)
 
 # loop over the face detections
 
+points=[]
 
+left_points=[]
+right_points=[]
 
 total_points=[]
-total_points1=[]
-face_landmark=list(range(0,28))
 
- #eyes cordinates that we will pickup points
+
+right_cheek=[0,1,2,3,4,28]
+left_cheek=[12,13,14,15,16,28]
+
+
+mark=[18,20,25,27] #eyes cordinates that we will pickup points
 
 for (i, rect) in enumerate(rects):
 
@@ -59,15 +61,31 @@ for (i, rect) in enumerate(rects):
 		landmark[i][0] = shape_.part(i).x
 		landmark[i][1] = shape_.part(i).y
 
-		if i==41 or i==46:
-			#print('i=',i,(landmark[i][0],landmark[i][1]))
-			total_points.append(dark_circle(gray,(landmark[i][0],landmark[i][1])))
+		if i in mark:
+			#print("(x,y)=",(landmark[i][0],landmark[i][1])) #get the cordinate of topmost eyes point
+			#print(landmark[i][1])
+			print(i)
+			points.append((landmark[i][0],landmark[i][1]))
 
-		if i in face_landmark:
-			total_points1.append((landmark[i][0],landmark[i][1]))
+		elif i in right_cheek:
+			right_points.append([landmark[i][0],landmark[i][1]])
+		elif i in left_cheek:
+			left_points.append([landmark[i][0],landmark[i][1]])
 
-print(np.mean(total_points))
 
-extract_cheeck_parts(gray,total_points1)
+
+left_points.append(right_points[-1]) #appned last 28 landmark in left points
+total_points.extend(right_points)
+total_points.extend(left_points)
+#print(total_points)
+
+crop_forehead(gray,points) #call function that return forehead cordinate
+
+
+extract_cheeck_parts(gray,total_points)
+
+
+
+
 
 
